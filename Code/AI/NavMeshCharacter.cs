@@ -118,9 +118,13 @@ public sealed class NavMeshCharacter : Component
 		{
 			lastTarget = currentTarget;
 			List<Vector3> path = Scene.NavMesh.GetSimplePath(Scene.NavMesh.GetClosestPoint(Transform.Position).Value,Scene.NavMesh.GetClosestPoint(currentTarget).Value);
-			path.RemoveAt(0);
-			if(path.Count == 0) path.Add(Transform.Position);
-			CurrentPath = path;
+
+			if (path.Any())
+			{
+				path.RemoveAt( 0 );
+				if ( path.Count == 0 ) path.Add( Transform.Position );
+				CurrentPath = path;
+			}	
 		}
 	}
 }
