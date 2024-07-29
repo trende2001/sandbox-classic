@@ -26,6 +26,9 @@ public sealed class PlayerFootsteps : Component
 		if ( Player.IsCrouching || Player.IsSlowWalking )
 			return;
 
+		if ( Player.IsNoclipping )
+			return;
+
 		var tr = Scene.Trace
 			.Ray( Player.Transform.Position + Vector3.Up * 20, Player.Transform.Position + Vector3.Up * -20 )
 			.Run();
